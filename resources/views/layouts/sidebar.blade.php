@@ -17,6 +17,7 @@
     <li class="{{ (request()->is('superadmin')) ? 'active' : '' }}"><a href="/superadmin"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
     
     <li class="{{ (request()->is('superadmin/sk*')) ? 'active' : '' }}"><a href="/superadmin/sk"><i class="fa fa-file-o"></i> <span>Surat Kematian</span></a></li>
+    <li class="{{ (request()->is('superadmin/gp*')) ? 'active' : '' }}"><a href="/superadmin/gp"><i class="fa fa-key"></i> <span>Ganti Pass</span></a></li>
     <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
     @else
         

@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminKrkController;
 use App\Http\Controllers\TpermohonanController;
 use App\Http\Controllers\LupaPasswordController;
 use App\Http\Controllers\DaftarLayananController;
+use App\Http\Controllers\GantiPasswordController;
 use App\Http\Controllers\AdminPermohonanController;
 
 
@@ -38,6 +39,8 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::get('superadmin', [HomeController::class, 'superadmin']);
+    Route::get('superadmin/gp', [GantiPasswordController::class, 'index']);
+    Route::post('superadmin/gp', [GantiPasswordController::class, 'update']);
     Route::post('superadmin/sk/updatelurah', [HomeController::class, 'updatelurah']);
     Route::get('superadmin/sk', [AdminSKController::class, 'index']);
     Route::get('superadmin/sk/create', [AdminSKController::class, 'create']);
