@@ -11,7 +11,7 @@
             <i class="ion ion-clipboard"></i><h3 class="box-title">Data Surat Kematian</h3>
 
             <div class="box-tools">
-              <a href="/superadmin/sk/create" class="btn btn-flat btn-sm btn-default bg-purple"><i class="fa fa-plus"></i> Tambah Data</a>
+              <a href="/rt/sk/create" class="btn btn-flat btn-sm btn-default bg-purple"><i class="fa fa-plus"></i> Tambah Data</a>
             </div>
           </div>
           <!-- /.box-header -->
@@ -24,7 +24,6 @@
                 <th>Nama</th>
                 <th>Sebab</th>
                 <th>pelapor</th>
-                <th>Akun Yg Membuat</th>
                 <th>Aksi</th>
               </tr>
               @foreach ($data as $key => $item)
@@ -35,11 +34,10 @@
                 <td>{{$item->nama}}</td>
                 <td>{{$item->sebab}}</td>
                 <td>{{$item->pelapor}}</td>
-                <td>{{$item->user_id == null ? 'superadmin':$item->user->name}}</td>
                 <td>
-                  <a href="/superadmin/sk/edit/{{$item->id}}" class="btn btn-flat btn-sm btn-default bg-purple"><i class="fa fa-edit"></i> Edit</a>
-                  <a href="/superadmin/sk/delete/{{$item->id}}" class="btn btn-flat btn-sm btn-default bg-purple" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
-                  <a href="/superadmin/sk/cetak/{{$item->id}}" target="_blank" class="btn btn-flat btn-sm btn-default bg-purple"><i class="fa fa-file"></i> Cetak</a>
+                  <a href="/rt/sk/edit/{{$item->id}}" class="btn btn-flat btn-sm btn-default bg-purple"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="/rt/sk/delete/{{$item->id}}" class="btn btn-flat btn-sm btn-default bg-purple" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
+                  
                 </td>
               </tr>
               @endforeach

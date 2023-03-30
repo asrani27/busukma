@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RtController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RtSKController;
 use App\Http\Controllers\TkrkController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DaftarController;
@@ -49,29 +51,24 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::post('superadmin/sk/edit/{id}', [AdminSKController::class, 'update']);
     Route::get('superadmin/sk/delete/{id}', [AdminSKController::class, 'delete']);
     Route::get('superadmin/sk/cetak/{id}', [AdminSKController::class, 'cetak']);
-    Route::get('superadmin/krk', [AdminKrkController::class, 'index']);
-    Route::get('superadmin/krk/{id}/verifikasi', [AdminKrkController::class, 'verifikasi']);
-    Route::get('superadmin/krk/{id}/edit', [AdminKrkController::class, 'edit']);
-    Route::get('superadmin/krk/{id}/print', [AdminKrkController::class, 'pdf']);
-    Route::post('superadmin/krk/{id}/edit', [AdminKrkController::class, 'update']);
-    Route::get('superadmin/krk/{id}/delete', [AdminKrkController::class, 'delete']);
-    Route::post('superadmin/krk/{id}/verifikasi', [AdminKrkController::class, 'verified']);
-    Route::get('superadmin/krk/{id}/unverifikasi', [AdminKrkController::class, 'unverifikasi']);
+
+    Route::get('superadmin/rt', [RtController::class, 'index']);
+    Route::get('superadmin/rt/create', [RtController::class, 'create']);
+    Route::post('superadmin/rt/create', [RtController::class, 'store']);
+    Route::get('superadmin/rt/edit/{id}', [RtController::class, 'edit']);
+    Route::post('superadmin/rt/edit/{id}', [RtController::class, 'update']);
+    Route::get('superadmin/rt/delete/{id}', [RtController::class, 'delete']);
+    Route::get('superadmin/rt/reset/{id}', [RtController::class, 'reset']);
 });
 
-Route::group(['middleware' => ['auth', 'role:pemohon']], function () {
-    Route::get('pemohon', [HomeController::class, 'pemohon']);
-    Route::get('pemohon/daftar-layanan', [DaftarLayananController::class, 'index']);
-
-    Route::get('pemohon/{id}/berkas', [TpermohonanController::class, 'berkas']);
-
-    Route::get('pemohon/{id}/berkas/krk_kkpr/create', [TkrkController::class, 'create']);
-    Route::post('pemohon/{id}/berkas/krk_kkpr/create', [TkrkController::class, 'store']);
-    Route::get('pemohon/{id}/berkas/krk_kkpr/edit/{krk_id}', [TkrkController::class, 'edit']);
-    Route::post('pemohon/{id}/berkas/krk_kkpr/edit/{krk_id}', [TkrkController::class, 'update']);
-    Route::get('pemohon/{id}/berkas/krk_kkpr/pdf/{krk_id}', [TkrkController::class, 'pdf']);
-
-    Route::post('pemohon/permohonan/add', [TpermohonanController::class, 'store']);
-    Route::post('pemohon/permohonan/update', [TpermohonanController::class, 'update']);
-    Route::get('pemohon/profil', [ProfilController::class, 'index']);
+Route::group(['middleware' => ['auth', 'role:rt']], function () {
+    Route::get('rt', [HomeController::class, 'rt']);
+    Route::get('rt/gp', [RtController::class, 'ganti_pass']);
+    Route::post('rt/gp', [RtController::class, 'ganti_password']);
+    Route::get('rt/sk', [RtSKController::class, 'index']);
+    Route::get('rt/sk/create', [RtSKController::class, 'create']);
+    Route::post('rt/sk/create', [RtSKController::class, 'store']);
+    Route::get('rt/sk/edit/{id}', [RtSKController::class, 'edit']);
+    Route::post('rt/sk/edit/{id}', [RtSKController::class, 'update']);
+    Route::get('rt/sk/delete/{id}', [RtSKController::class, 'delete']);
 });

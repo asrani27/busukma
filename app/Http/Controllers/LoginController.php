@@ -40,12 +40,12 @@ class LoginController extends Controller
         if (Auth::attempt($credential, $remember)) {
 
             if (Auth::user()->hasRole('superadmin')) {
-                Session::flash('success', 'Selamat Datang');
+                Session::flash('success', 'Selamat Datang Superadmin');
                 return redirect('superadmin');
             }
-            if (Auth::user()->hasRole('pemohon')) {
-                Session::flash('success', 'Selamat Datang');
-                return redirect('pemohon');
+            if (Auth::user()->hasRole('rt')) {
+                Session::flash('success', 'Selamat Datang Pa/Bu RT');
+                return redirect('rt');
             }
         } else {
             Session::flash('error', 'username/password salah');
